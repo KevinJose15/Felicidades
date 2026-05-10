@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para la Mejor Mamá del Mundo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-bg: #fdf8f5;
+            --text-main: #5a4a42;
+            --accent-gold: #d4af37;
+            --accent-pink: #f4dce0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--accent-pink) 100%);
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            font-style: italic;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .gallery {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .gallery-item {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 100px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
+        }
+
+        .gallery-item:nth-child(even) { flex-direction: row-reverse; }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* DIMENSIONES CUADRADAS PERFECTAS */
+        .image-container {
+            flex: 1.2;
+            aspect-ratio: 1 / 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .image-container img:hover { transform: scale(1.08); }
+
+        .text-container {
+            flex: 1;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+            border-top: 3px solid var(--accent-gold);
+            position: relative;
+        }
+
+        .text-container h3 {
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .text-container p { line-height: 1.8; font-size: 1.05rem; }
+
+        footer {
+            background-color: var(--text-main);
+            color: var(--primary-bg);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(10deg); }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-item, .gallery-item:nth-child(even) { flex-direction: column; text-align: center; gap: 20px; }
+            .image-container { width: 100%; max-width: 400px; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="floating-heart" style="top: 15%; left: 10%;">🌹</div>
+        <div class="floating-heart" style="top: 65%; right: 12%; animation-delay: 1.5s;">✨</div>
+        <div class="floating-heart" style="top: 25%; right: 18%; animation-delay: 2.5s;">🤍</div>
+        
+        <h1>Para mi Madre Especial</h1>
+        <p>"Muchas mujeres hicieron el bien; mas tú sobrepasas a todas." <br>— Proverbios 31:29</p>
+        <p style="font-size: 0.9rem; margin-top: 20px; opacity: 0.7;">(Haz clic en cualquier lugar para activar la música 🎵)</p>
+    </header>
+
+    <section class="gallery">
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/papa y hijo.jpeg"></div>
+            <div class="text-container">
+                <h3>La mejor mamá</h3>
+                <p>Tu amor es el pilar que sostiene cada uno de nuestros sueños. Gracias por ser el corazón de nuestro hogar.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/hija 2.jpg"></div>
+            <div class="text-container">
+                <h3>Gracias por tu amor</h3>
+                <p>"El amor es sufrido, es benigno... el amor nunca deja de ser." (1 Corintios 13:4-8).</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/marito y lucas.jpg"></div>
+            <div class="text-container">
+                <h3>Eres una bendición</h3>
+                <p>Cada momento a tu lado es un tesoro que guardo en mi alma. Eres el regalo más hermoso de Dios.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/mama flor.jpeg"></div>
+            <div class="text-container">
+                <h3>Fortaleza y Gracia</h3>
+                <p>"Fuerza y honor son su vestidura; y se ríe de lo por venir." (Proverbios 31:25).</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/mama 2.jpeg"></div>
+            <div class="text-container">
+                <h3>Luz en mi camino</h3>
+                <p>Gracias por guiar mis pasos con sabiduría y paciencia.</p>
+            </div>
+        </div>
+        
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/hermanos.jpeg"></div>
+            <div class="text-container">
+                <h3>Sabiduría</h3>
+                <p>"Abre su boca con sabiduría, y la ley de clemencia está en su lengua."</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/mama 3.jpg"></div>
+            <div class="text-container">
+                <h3>Un abrazo que sana</h3>
+                <p>Tu ternura es el refugio más seguro.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/elias 1.jpg"></div>
+            <div class="text-container">
+                <h3>Legado Eterno</h3>
+                <p>Gracias por enseñarnos a amar a Dios sobre todas las cosas.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/huja.jpeg"></div>
+            <div class="text-container">
+                <h3>Belleza Verdadera</h3>
+                <p>"La mujer que teme al Señor, esa será alabada."</p>
+            </div>
+        </div>
+
+        <div class="gallery-item reveal">
+            <div class="image-container"><img src="fotos/lucas.jpeg"></div>
+            <div class="text-container">
+                <h3>Bienaventurada</h3>
+                <p>"Se levantan sus hijos y la llaman bienaventurada."</p>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <h2>Te amamos infinitamente</h2>
+        <p>¡Feliz día, Mamá!</p>
+    </footer>
+
+    <audio id="background-music" loop autoplay>
+        <source src="musica/Virtuosa (Canción Día de las Madres) - Samuel Adrian.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: var(--white); padding: 10px 15px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; gap: 10px; border: 1px solid var(--accent-pink); font-size: 14px; color: var(--text-main);">
+        <span id="music-icon">⏸️</span>
+        <span id="music-text">Pausar</span>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const music = document.getElementById('background-music');
+            const musicIcon = document.getElementById('music-icon');
+            const musicText = document.getElementById('music-text');
+            const reveals = document.querySelectorAll(".reveal");
+
+            // FUNCIÓN MÁGICA: Reproduce al primer clic en cualquier parte del documento
+            const startMusic = () => {
+                music.play().then(() => {
+                    musicIcon.innerText = '⏸️';
+                    musicText.innerText = 'Pausar';
+                    // Removemos el evento para que no intente darle play cada vez que hace clic
+                    document.removeEventListener('click', startMusic);
+                }).catch(error => console.log("Esperando interacción..."));
+            };
+
+            document.addEventListener('click', startMusic);
+
+            // Control manual
+            document.getElementById('music-control').addEventListener('click', (e) => {
+                e.stopPropagation(); // Evita que el clic del botón active el 'startMusic' general
+                if (music.paused) {
+                    music.play();
+                    musicIcon.innerText = '⏸️';
+                    musicText.innerText = 'Pausar';
+                } else {
+                    music.pause();
+                    musicIcon.innerText = '🎵';
+                    musicText.innerText = 'Reproducir';
+                }
+            });
+
+            // Animación de scroll
+            function checkReveal() {
+                reveals.forEach((reveal) => {
+                    if (reveal.getBoundingClientRect().top < window.innerHeight - 100) {
+                        reveal.classList.add("visible");
+                    }
+                });
+            }
+            window.addEventListener("scroll", checkReveal);
+            checkReveal();
+        });
+    </script>
+</body>
+</html>

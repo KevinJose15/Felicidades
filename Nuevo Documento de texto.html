@@ -86,7 +86,6 @@
             transform: translateY(0);
         }
 
-        /* DIMENSIONES CUADRADAS PERFECTAS */
         .image-container {
             flex: 1.2;
             aspect-ratio: 1 / 1;
@@ -244,7 +243,6 @@
                 <p>"Se levantan sus hijos y la llaman bienaventurada."</p>
             </div>
         </div>
-
     </section>
 
     <footer>
@@ -275,13 +273,14 @@
                     musicIcon.innerText = '⏸️';
                     musicText.innerText = 'Pausar';
                     document.removeEventListener('click', startMusic);
-                }).catch(err => console.log("Esperando clic..."));
+                }).catch(err => console.log("Auto-play bloqueado, esperando interacción."));
             };
+            
             document.addEventListener('click', startMusic);
 
-            // Control manual
+            // Control manual del botón
             musicBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
+                e.stopPropagation(); // Importante para no disparar el startMusic de nuevo
                 if (music.paused) {
                     music.play();
                     musicIcon.innerText = '⏸️';
@@ -293,16 +292,19 @@
                 }
             });
 
-            // Scroll Reveal
+            // Lógica de Scroll Reveal
             function checkReveal() {
                 reveals.forEach((reveal) => {
-                    if (reveal.getBoundingClientRect().top < window.innerHeight - 100) {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) {
                         reveal.classList.add("visible");
                     }
                 });
             }
+
             window.addEventListener("scroll", checkReveal);
-            checkReveal();
+            checkReveal(); // Ejecutar una vez al cargar
         });
     </script>
 </body>

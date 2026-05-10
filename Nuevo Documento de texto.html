@@ -252,37 +252,36 @@
         <p>¡Feliz día, Mamá!</p>
     </footer>
 
-    <audio id="background-music" loop autoplay>
+    <audio id="background-music" loop>
         <source src="musica/Virtuosa (Canción Día de las Madres) - Samuel Adrian.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="music-control" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: var(--white); padding: 10px 15px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; gap: 10px; border: 1px solid var(--accent-pink); font-size: 14px; color: var(--text-main);">
-        <span id="music-icon">⏸️</span>
-        <span id="music-text">Pausar</span>
+    <div id="music-control" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: white; padding: 10px 15px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; gap: 10px; border: 1px solid #f4dce0; font-size: 14px; color: #5a4a42;">
+        <span id="music-icon">🎵</span>
+        <span id="music-text">Reproducir Música</span>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const music = document.getElementById('background-music');
+            const musicBtn = document.getElementById('music-control');
             const musicIcon = document.getElementById('music-icon');
             const musicText = document.getElementById('music-text');
             const reveals = document.querySelectorAll(".reveal");
 
-            // FUNCIÓN MÁGICA: Reproduce al primer clic en cualquier parte del documento
+            // Función para iniciar música al primer clic
             const startMusic = () => {
                 music.play().then(() => {
                     musicIcon.innerText = '⏸️';
                     musicText.innerText = 'Pausar';
-                    // Removemos el evento para que no intente darle play cada vez que hace clic
                     document.removeEventListener('click', startMusic);
-                }).catch(error => console.log("Esperando interacción..."));
+                }).catch(err => console.log("Esperando clic..."));
             };
-
             document.addEventListener('click', startMusic);
 
             // Control manual
-            document.getElementById('music-control').addEventListener('click', (e) => {
-                e.stopPropagation(); // Evita que el clic del botón active el 'startMusic' general
+            musicBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 if (music.paused) {
                     music.play();
                     musicIcon.innerText = '⏸️';
@@ -294,7 +293,7 @@
                 }
             });
 
-            // Animación de scroll
+            // Scroll Reveal
             function checkReveal() {
                 reveals.forEach((reveal) => {
                     if (reveal.getBoundingClientRect().top < window.innerHeight - 100) {
